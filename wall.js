@@ -6,6 +6,8 @@ class wall {
         this.heightUpperWall = random(20, height - 20 - this.gap);
         this.wallTopImg = loadImage('./wall_top.png');
         this.wallBotImg = loadImage('./wall_bot.png');
+        this.heightLowerWall = height - this.gap - this.heightUpperWall
+        this.birdHasPassedThisWall = false
     }
 
     upperwall() {
@@ -13,7 +15,7 @@ class wall {
     }
 
     lowerwall() {
-        image(this.wallBotImg, this.x, this.heightUpperWall + this.gap, this.size, (height - this.gap - this.heightUpperWall))
+        image(this.wallBotImg, this.x, this.heightUpperWall + this.gap, this.size, this.heightLowerWall)
     }
 
     draw() {
@@ -29,6 +31,26 @@ class wall {
     outOfBound() {
         if (this.x + this.size <= 0) {
             return true;
+        }
+    }
+
+    didBirdCollide(bird) {
+        // Upper Wall
+        if (bird.x + bird.size >= this.x && bird.x + bird.size <= this.x + this.size && bird.y + bird.size >= 0 - 100 && bird.y + bird.size <= this.heightUpperWall) {
+            return true;
+        }
+        // Lower Wall
+        if (bird.x + bird.size >= this.x && bird.x + bird.size <= this.x + this.size && bird.y + bird.size >= height - this.heightLowerWall && bird.y + bird.size <= height + 100) {
+            return true;
+        }
+    }
+
+    isBirdAhead(bird) {
+        if (bird.x > this.x && this.birdHasPassedThisWall == false) {
+            this.birdHasPassedThisWall = true;
+            return true;
+        } else {
+            return false
         }
     }
 }

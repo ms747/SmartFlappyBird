@@ -8,6 +8,7 @@ class bird {
         this.size = 30;
     }
 
+
     draw() {
         image(this.birdImg, this.x, this.y, this.size, this.size);
         if (this.y <= height - (this.size + 2)) {
