@@ -42,9 +42,8 @@ function draw() {
 
     if (!w[0].didBirdCollide(b) && w[0].isBirdAhead(b)) {
         score++;
-        console.log("Score", score);
-
     }
+    
     textSize(32);
     textAlign(CENTER, CENTER);
     fill(255);
