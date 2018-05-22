@@ -83,7 +83,6 @@ class NeuralNetwork {
         return new NeuralNetwork(this);
     }
 
-
     mutate(func) {
         this.wt_ih.map(func);
         this.wt_ho.map(func);
