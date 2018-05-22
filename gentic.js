@@ -7,28 +7,28 @@ function nextGen(){
     savedBird = [];
 }
 
+
+
 function pickOne(){
     let index = 0;
-    console.log(index);
     let r = random(1);  
     while(r > 0){
-        console.log(savedBird[index].fitness)
         r = r - savedBird[index].fitness;
         index++;
     }
     index--;
-    let birdy = savedBird[index]  
-    let child = new bird(birdy.brain)
+    let brain = savedBird[index].copy();
+    let child = new bird(brain);
     return child;
 }
 
 function calculateFitness(){
     let sum = 0;
-    for(let birdie of b){
+    for(let birdie of savedBird){
         sum += birdie.score;
     }
    
-    for(let birdie of b){
+    for(let birdie of savedBird){
         birdie.fitness= birdie.score / sum;
     }
 }

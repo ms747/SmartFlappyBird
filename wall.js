@@ -2,7 +2,7 @@ class wall {
     constructor() {
         this.x = width + 50;
         this.size = 50;
-        this.gap = 175;
+        this.gap = 170;
         this.heightUpperWall = random(20, height - 20 - this.gap);
         this.wallTopImg = loadImage('./wall_top.png');
         this.wallBotImg = loadImage('./wall_bot.png');

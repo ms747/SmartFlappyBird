@@ -1,4 +1,4 @@
-let TOTAL = 250;
+let TOTAL = 1000;
 let b = [];
 let w = [];
 let startMilli;
@@ -8,11 +8,13 @@ let score = 0;
 let gameState = true
 let counter = 0;
 let savedBird = [];
+let slider;
 function setup() {
     createCanvas(400, 400);
     for(let i = 0 ; i < TOTAL ; i++){
         b.push(new bird());
     }
+    slider = createSlider(1,100,1);
     //w.push(new wall());
     startMilli = 0;
 }
@@ -27,11 +29,14 @@ function draw() {
     //     w.push(new wall());
     //     startMilli = currentMilli;
     // }
+
+    background(back);
+    for(let n = 0; n < slider.value();n++){
     if(counter % 150 == 0){
         w.push(new wall());
     }    
 
-    background(back);
+    
 
     for (let i = 0; i < w.length; i++) {
         if (w[i].outOfBound()) {
@@ -44,7 +49,7 @@ function draw() {
             }
         }
 
-        w[i].draw();
+        //w[i].draw();
         w[i].move();
     }
     // if (w[0].didBirdCollide(b)) {
@@ -72,12 +77,25 @@ function draw() {
         w.push(new wall());
     }
 
-    for(birdie of b){
-        birdie.think(w)
-        birdie.update();
-        birdie.draw();
+
+    for(let i = 0 ; i < b.length ; i++){
+        if(b[i].y <= 0){
+            b.splice(i,1);
+        }
+        b[i].think(w);
+        b[i].update();
     }
     counter++;
+}
+
+    for(walls of w){
+        walls.draw();
+    }
+
+    for(birds of b){
+        birds.draw();
+    }
+    
 }
 
 // function keyPressed() {
