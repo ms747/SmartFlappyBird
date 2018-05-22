@@ -83,7 +83,6 @@ class NeuralNetwork {
         return new NeuralNetwork(this);
     }
 
-    // Accept an arbitrary function for mutation
     mutate(func) {
         this.weights_ih.map(func);
         this.weights_ho.map(func);
